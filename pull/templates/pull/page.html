@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% comment %} {% load my_template_tag%} {% endcomment %}
+
+{% comment %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'pull/style.css' %}"> {% endcomment %}
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+{% comment %} <style>
+body{background-image:url ("static/pull/images/back.gif");}
+</style> {% endcomment %}
+
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+
+<div class="container">
+  <h1> Welcome to Log details </h1>
+  <hr></hr>
+  <div class="row">
+    <div class = "col-sm-1" style="background-color:light blue;">
+      <b>1</b>
+    </div>
+    <div class = "col-sm-1" style="background-color:white;">
+    Gaurav Bhagwat
+    </div>
+    <div class = "col-sm-10" style="background-color:light blue;" style="overflow-x:auto;">
+    {% if latest_Call_details_list %}
+    <table>
+    
+    <tr>
+        <th>Phone Ip</th>
+        <th>MAC Address</th>
+        <th>Time Stamp</th>
+        <th>Call Type</th>
+        <th>Called Party Name</th>
+        <th>Called Party Dir Num</th>
+        <th>Calling Party Name</th>
+        <th>Call Duration</th>
+    </tr>
+    {% comment %} {% with counter=forloop.counter %}
+    {% with isbreak = False %} {% endcomment %}
+    {% comment %} {%i = 0%} {% endcomment %}
+    {% for obj in latest_Call_details_list %}
+    <tr>
+      {% if obj.calling_party_name == "Gaurav Bhagwat"%}
+          {% comment %} {{obj|slice:":5"}} {% endcomment %}
+            <td>{{ obj.phone_ip}}</td>
+            <td>{{ obj.mac_address}}</td>
+            <td>{{ obj.time_stamp}}</td>
+            <td>{{ obj.call_type}}</td>
+            <td>{{ obj.called_party_name}}</td>
+            <td>{{ obj.called_party_dir_num}}</td>
+            <td>{{ obj.calling_party_name}}</td>
+            <td>{{ obj.call_duration}}</td>
+      {% endif %}
+    </tr>
+    {% endfor %} 
+    </table>
+    {% endif %}
+    </div>
+  </div>
+
+  <hr></hr>
+
+  <div class="row">
+    <div class = "col-sm-1" style="background-color:light blue;">
+      <b>2</b>
+    </div>
+    <div class = "col-sm-1" style="background-color:white;">
+    Kent Iverson
+    </div>
+    <div class = "col-sm-10" style="background-color:light blue;" style="overflow-x:auto;">
+    {% if latest_Call_details_list %}
+    <table>
+    <tr>
+        <th>Phone Ip</th>
+        <th>MAC Address</th>
+        <th>Time Stamp</th>
+        <th>Call Type</th>
+        <th>Called Party Name</th>
+        <th>Called Party Dir Num</th>
+        <th>Calling Party Name</th>
+        <th>Call Duration</th>
+    </tr>
+    {% comment %} {%i = 0%} {% endcomment %}
+    {% for obj in latest_Call_details_list%}
+    <tr>
+        {% if obj.calling_party_name == "Kent Iverson"%}
+        {% comment %} {{obj|slice:":5"}} {% endcomment %}  
+            <td>{{ obj.phone_ip}}</td>
+            <td>{{ obj.mac_address}}</td>
+            <td>{{ obj.time_stamp}}</td>
+            <td>{{ obj.call_type}}</td>
+            <td>{{ obj.called_party_name}}</td>
+            <td>{{ obj.called_party_dir_num}}</td>
+            <td>{{ obj.calling_party_name}}</td>
+            <td>{{ obj.call_duration}}</td>    
+        {%endif%}
+    </tr>
+    {% endfor %}
+    </table>
+    {% endif %}
+    </div>
+  </div>
+
+</div>
